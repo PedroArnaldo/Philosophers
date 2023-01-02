@@ -6,11 +6,11 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:37:56 by parnaldo          #+#    #+#             */
-/*   Updated: 2022/12/06 19:02:39 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/01 00:23:41 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/philo.h"
 
 static int	ft_isspace(char c)
 {
@@ -24,11 +24,11 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-int long	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int			sin;
-	int long	result;
-	int long	i;
+	int		sin;
+	long	result;
+	long	i;
 
 	i = 0;
 	sin = 1;

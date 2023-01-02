@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 00:17:54 by parnaldo          #+#    #+#             */
-/*   Updated: 2022/06/17 00:17:54 by parnaldo         ###   ########.fr       */
+/*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
+/*   Updated: 2023/01/01 00:31:05 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PHILO_H
+# define PHILO_H
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+# include <pthread.h>
+# include <sys/time.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+
+typedef struct s_info
 {
-	unsigned int	i;
-	char			*str;
+	int num_of_philo;
+	int time_to_die;
+	int time_to_eat;
+	int time_to_sleep;
+	int num_times_must_eat;
+}   t_info;
 
-	if (!s)
-		return (NULL);
-	str = (char *)malloc((ft_strlen((char *)s) + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		str[i] = f(i, s[i]);
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
+long	ft_atoi(const char *str);
+
+#endif

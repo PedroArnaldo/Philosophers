@@ -1,15 +1,28 @@
 NAME = philo
 MAKEFLGS += --silent
-CC = cc
-CFLAGS = -Wextra -Wall -Werror
+CC = cc -g
+CFLAGS = -Wextra -Wall -Werror -pthread
 RM = rm -fr
 
-SRC = ./srcs/
+SRC = src/philo.c \
+      src/utils/ft_atoi.c \
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(SRC:.c=.o)
 
-# LIBFT #
-LIBFT = ./libs/libft/libft.a
-LIBFT_DIR = ./libs/libft
-LIBFT_IN  = ./libs/libft/libft.h
+%.o: %.c
+		${CC} ${CFLAGS} -c $< -o $@
 
+$(NAME): $(OBJS)
+		$(CC) $(OBJS) -o $(NAME)
+
+all: $(NAME)
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re:	fclean all
+
+.PHONY: all clean fclean re
