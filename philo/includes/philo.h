@@ -27,6 +27,7 @@ typedef struct s_info
 	int time_to_eat;
 	int time_to_sleep;
 	int num_times_must_eat;
+	pthread_mutex_t mutex;
 }   t_info;
 
 long	ft_atoi(const char *str);
