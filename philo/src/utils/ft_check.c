@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 15:26:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/11 15:36:58 by parnaldo         ###   ########.fr       */
+/*   Created: 2023/01/11 15:26:55 by parnaldo          #+#    #+#             */
+/*   Updated: 2023/01/11 15:32:34 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
-int check_args(int ac, char **av)
-{	
-	if(ac >= 5 && ac <= 6)
+int	check_has_number(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (i < argc)
 	{
-		if(check_has_number(ac, av) == 0)
-			return (0);
+		j = 0;
+		while (argv[i][j])
+		{
+			if (ft_isdigit(argv[i][j]) == 0)
+				return (0);
+			j++;
+		}
+		i++;
 	}
 	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	printf("%d\n", check_args(ac, av));
-    return (0);
 }

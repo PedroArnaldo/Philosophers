@@ -6,6 +6,8 @@ RM = rm -fr
 
 SRC = src/philo.c \
       src/utils/ft_atoi.c \
+	  src/utils/ft_isdigit.c \
+	  src/utils/ft_check.c
 
 OBJS = $(SRC:.c=.o)
 
