@@ -19,11 +19,20 @@ int check_args(int ac, char **av)
 		if(check_has_number(ac, av) == 0)
 			return (0);
 	}
+	else
+		return (0);
 	return (1);
 }
 
 int	main(int ac, char **av)
 {
-	printf("%d\n", check_args(ac, av));
-    return (0);
+	t_info data;
+
+	memset(&data, 0, sizeof(data));
+	if(!check_args(ac, av))
+	{
+		printf("Error\n");
+		return (0);
+	}
+	init_info(&data, ac, av);
 }
