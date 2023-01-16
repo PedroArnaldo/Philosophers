@@ -28,6 +28,7 @@ typedef struct s_info
 	int				time_to_sleep;
 	int				num_times_must_eat;
 	pthread_mutex_t print;
+	pthread_mutex_t *all_forks;
 	//struct s_philo	**philos;
 } t_info;
 
@@ -43,8 +44,14 @@ typedef struct s_phile
 	pthread_t		thread;
 } t_philo;
 
+
+int		init_info(t_info *info, int ac, char **av);
+
+
+void	print_routine(t_philo *philo, char *str);
+
 long	ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		check_has_number(int ac, char **av);
-int		init_info(t_info *info, int ac, char **av);
+
 #endif
