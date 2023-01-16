@@ -27,16 +27,20 @@ typedef struct s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_times_must_eat;
-	unsigned long	time_start;
+	pthread_mutex_t print;
+	//struct s_philo	**philos;
 } t_info;
 
 typedef struct s_phile
 {
 	int				id;
 	struct s_info	*info;
-	unsigned long	last_meal;
-	pthread_mutex_t	my_fork;
-	pthread_mutex_t	s_fork;
+	//unsigned long	last_meal;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t	*fork_right;
+	//unsigned long	time_start;
+	//long long		last_meal;
+	pthread_t		thread;
 } t_philo;
 
 long	ft_atoi(const char *str);
