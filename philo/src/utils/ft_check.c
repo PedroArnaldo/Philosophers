@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
+/*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:55 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/11 15:32:34 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:21:05 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,17 @@ int	check_has_number(int argc, char **argv)
 		}
 		i++;
 	}
+	return (1);
+}
+
+int check_args(int ac, char **av)
+{	
+	if(ac >= 5 && ac <= 6)
+	{
+		if(check_has_number(ac, av) == 0)
+			return (0);
+	}
+	else
+		return (0);
 	return (1);
 }

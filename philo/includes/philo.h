@@ -51,5 +51,6 @@ void	print_routine(t_philo *philo, char *str);
 long	ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		check_has_number(int ac, char **av);
+int		check_args(int ac, char **av);
 
 #endif

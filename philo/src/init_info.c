@@ -23,7 +23,8 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 			i++;
 		}
 		pthread_mutex_init(&data->print, NULL);
-		pthread_mutex_init(&philo->stop, NULL);		return (philo);
+		pthread_mutex_init(&philo->stop, NULL);		
+		return (philo);
     }
     else
 		return (0);
