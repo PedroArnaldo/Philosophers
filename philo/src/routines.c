@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/17 16:39:38 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:09:36 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 void	take_fork(t_philo *philo)
 {
-	// pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
-	// pthread_mutex_lock(&philo->data->all_forks[philo->fork_right]);
-	 print_routine(philo, "taking fork.");
-	// pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
-	// pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
+	pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
+	print_routine(philo, "taking fork.");
+	pthread_mutex_lock(&philo->data->all_forks[philo->fork_right]);
+	print_routine(philo, "taking fork.");
+	philo->use_fork = 1;
 
 }
 
 
 void eat(t_philo *philo)
 {
-    //tenho que pegar o garfo direito e esquerdo
-	//if(philo->use_fork)
-	//{
+	if(philo->use_fork)
+	{
 		print_routine(philo, "is eating.");
 		usleep(philo->data->time_to_eat * 1000);
-	//	philo->use_fork = 0;
-	//}
+		philo->use_fork = 0;
+		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
+		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
+	}
 }
 
 void sleeping(t_philo *philo)
@@ -48,17 +49,17 @@ void    think(t_philo *philo)
 void    *routines(void *arg)
 {
     t_philo *philo;
-
     philo = (t_philo *) arg;
+	if (philo->id % 2 == 0)
+		usleep(100 * 1000);
     while(42)
     {
-		pthread_mutex_lock(&philo->stop);
-	//	take_fork(philo);
+	//	pthread_mutex_lock(&philo->stop);
+		take_fork(philo);
 		eat(philo);
         sleeping(philo);
         think(philo);
-		sleep(1);
-		pthread_mutex_unlock(&philo->stop);
+	//	pthread_mutex_unlock(&philo->stop);
     }
     return (NULL);
 }

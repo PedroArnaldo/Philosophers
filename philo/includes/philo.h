@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/17 15:19:32 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:11:33 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_info
 	pthread_mutex_t print;
 	pthread_mutex_t *all_forks;
 	struct s_philo	*philo;
+	int				time_start;
 } t_info;
 
 typedef struct s_philo
