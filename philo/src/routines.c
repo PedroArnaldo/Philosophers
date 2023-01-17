@@ -6,33 +6,42 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/16 15:28:14 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/17 08:27:01 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int eat(t_philo philo)
+void eat(t_philo *philo)
 {
-    //tem que retonar se ele conseguir pegar o garfo
-}
-
-void sleeping(t_philo philo)
-{
+    //tenho que pegar o garfo direito e esquerdo
+    print_routine(philo, "is eating.");
     
 }
 
-void    think(t_philo philo)
+void sleeping(t_philo *philo)
 {
-
+    print_routine(philo, "is spleeping.");
 }
 
-void    *routines(t_philo philo)
+void    think(t_philo *philo)
 {
-    while(1)
+    print_routine(philo, "is thinking.");
+}
+
+void    *routines(void *arg)
+{
+    t_philo *philo;
+
+    philo = (t_philo *) arg;
+    while(42)
     {
+        pthread_mutex_lock(&philo->stop);
         eat(philo);
         sleeping(philo);
         think(philo);
+        sleep(1);
+        pthread_mutex_unlock(&philo->stop);
     }
+    return (NULL);
 }

@@ -8,7 +8,9 @@ SRC = src/philo.c \
       src/utils/ft_atoi.c \
 	  src/utils/ft_isdigit.c \
 	  src/utils/ft_check.c \
-	  src/init_info.c
+	  src/init_info.c \
+	  src/print_routines.c \
+	  src/routines.c
 
 OBJS = $(SRC:.c=.o)
 

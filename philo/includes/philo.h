@@ -29,24 +29,22 @@ typedef struct s_info
 	int				num_times_must_eat;
 	pthread_mutex_t print;
 	pthread_mutex_t *all_forks;
-	//struct s_philo	**philos;
 } t_info;
 
 typedef struct s_phile
 {
 	int				id;
-	struct s_info	*info;
-	//unsigned long	last_meal;
+	pthread_t		thread;
+	struct s_info   *data;
+	pthread_mutex_t  stop;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
-	//unsigned long	time_start;
-	//long long		last_meal;
-	pthread_t		thread;
 } t_philo;
 
 
-int		init_info(t_info *info, int ac, char **av);
+t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 
+void   *routines(void *arg);
 
 void	print_routine(t_philo *philo, char *str);
 
