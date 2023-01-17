@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/12 17:38:28 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:19:32 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@ typedef struct s_info
 	int				num_times_must_eat;
 	pthread_mutex_t print;
 	pthread_mutex_t *all_forks;
+	struct s_philo	*philo;
 } t_info;
 
-typedef struct s_phile
+typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
 	struct s_info   *data;
 	pthread_mutex_t  stop;
-	pthread_mutex_t	*fork_left;
-	pthread_mutex_t	*fork_right;
+	int				fork_left;
+	int				fork_right;
+	int				use_fork;
 } t_philo;
 
 
