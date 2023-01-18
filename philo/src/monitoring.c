@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_routines.c                                   :+:      :+:    :+:   */
+/*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
+/*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 15:28:48 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/18 16:38:43 by parnaldo         ###   ########.fr       */
+/*   Created: 2023/01/18 16:16:05 by parnaldo          #+#    #+#             */
+/*   Updated: 2023/01/18 16:41:50 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void print_routinet(long ms, t_philo *philo, char *str)
+void	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->print);
-	printf("%ld [%d] %s\n", ms, philo->id, str);
-    pthread_mutex_unlock(&philo->data->print);
+	int ms;
+
+	ms = time_now() - philo->data->time_start;
+	if(philo->last_meals >= philo->data->time_to_die)
+		printf("%d %d died\n", ms, philo->id);
 }

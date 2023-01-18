@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/17 18:11:33 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:25:07 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,19 @@ typedef struct s_philo
 	int				fork_left;
 	int				fork_right;
 	int				use_fork;
+	int				last_meals;
 } t_philo;
 
 
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 
 void   *routines(void *arg);
+long    time_now(void);
 
 void	print_routine(t_philo *philo, char *str);
+void	print_routinet(long ms, t_philo *philo, char *str);
+
+void	is_dead(t_philo *philo);
 
 long	ft_atoi(const char *str);
 int		ft_isdigit(int c);

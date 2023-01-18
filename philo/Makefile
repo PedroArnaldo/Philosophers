@@ -5,12 +5,14 @@ CFLAGS = -Wextra -Wall -Werror -pthread
 RM = rm -fr
 
 SRC = src/philo.c \
+	  src/utils/get_time.c \
       src/utils/ft_atoi.c \
 	  src/utils/ft_isdigit.c \
 	  src/utils/ft_check.c \
 	  src/init_info.c \
 	  src/print_routines.c \
-	  src/routines.c
+	  src/routines.c \
+	  src/monitoring.c
 
 OBJS = $(SRC:.c=.o)
 

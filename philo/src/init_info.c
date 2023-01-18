@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/17 17:45:33 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:36:49 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 			philo[i].fork_right = i+1;
 			philo[i].data = data;
 			philo[i].use_fork = 0;
+			philo[i].last_meals = 0;
 			i++;
 		}
 		pthread_mutex_init(&data->print, NULL);
