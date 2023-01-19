@@ -6,17 +6,33 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:16:05 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/18 16:41:50 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:07:09 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	is_dead(t_philo *philo)
+int	did_someone_die(t_philo *philo)
 {
-	int ms;
+	unsigned long  ms;
+	int i;
 
-	ms = time_now() - philo->data->time_start;
-	if(philo->last_meals >= philo->data->time_to_die)
-		printf("%d %d died\n", ms, philo->id);
+	pthread_mutex_lock(&philo->stop);
+	i = 0;
+	ms = time_now() - philo->last_meals;
+	if (philo->data->is_dead_philo != 1)
+	{
+		ms = time_now() - philo->last_meals;
+		if(ms > philo->data->time_to_die)
+		{
+			ms = time_now() - philo->data->time_start;
+			print_routinet(ms, philo, "died");
+			philo->data->is_dead_philo = 1;
+			i = 1;
+		}
+		else
+			i = 0;
+	}
+	pthread_mutex_unlock(&philo->stop);
+	return (i);
 }
