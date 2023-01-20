@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/19 22:41:17 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:06:16 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 		data->time_to_die = ft_atoi(argv[2]);
 		data->time_to_eat = ft_atoi(argv[3]);
 		data->time_to_sleep = ft_atoi(argv[4]);
+		data->satisfied = 0;
 		if (argc == 6)
 			data->num_times_must_eat = ft_atoi(argv[5]);
 		data->all_forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo); 

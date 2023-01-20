@@ -23,10 +23,12 @@
 typedef struct s_info
 {
 	int				num_of_philo;
-	int				time_to_die;
+	unsigned long	time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_times_must_eat;
+	int				satisfied;
+	int				someone_dead;
 	pthread_mutex_t print;
 	pthread_mutex_t *all_forks;
 	struct s_philo	*philo;
@@ -50,12 +52,13 @@ typedef struct s_philo
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 
 void   *routines(void *arg);
+void    smart_sleep(unsigned long time, t_philo *philo);
 unsigned long    time_now(void);
 
 void	print_routine(t_philo *philo, char *str);
 void	print_routinet(long ms, t_philo *philo, char *str);
 
-void	is_dead(t_philo *philo);
+int	monitoring(t_philo *philo);
 
 long	ft_atoi(const char *str);
 int		ft_isdigit(int c);

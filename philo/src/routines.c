@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/19 22:41:45 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/20 09:04:26 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	take_fork(t_philo *philo)
 	pthread_mutex_lock(&philo->data->all_forks[philo->fork_right]);
 	print_routinet(ms_l, philo, "has taken a fork.");
 	ms_r = time_now() - philo->data->time_start;
-		pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
+	pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
 	print_routinet(ms_r, philo, "has taken a fork.");
 }
 
@@ -31,8 +31,11 @@ void eat(t_philo *philo)
 
 	pthread_mutex_lock(&philo->check);
 	ms = time_now() - philo->data->time_start;
-	philo->last_meals = ms;
-	print_routinet(ms, philo, "is eating.");
+	philo->last_meals = time_now();
+	print_routinet(ms, philo, "is eating	");
+	if(philo->ate_times == philo->data->num_times_must_eat)
+		philo->data->satisfied++;
+	philo->ate_times++;
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
 	pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
@@ -44,7 +47,7 @@ void sleeping(t_philo *philo)
 	long ms;
 
 	ms = time_now() - philo->data->time_start;
-    print_routinet(ms, philo, "is spleeping.");
+	print_routinet(ms, philo, "is sleeping");
 	usleep(philo->data->time_to_sleep * 1000);
 }
 
@@ -53,7 +56,7 @@ void    think(t_philo *philo)
 	long ms;
 
 	ms = time_now() - philo->data->time_start;
-    print_routinet(ms, philo, "is thinking.");
+    print_routinet(ms, philo, "is thinking");
 }
 
 void    *routines(void *arg)
