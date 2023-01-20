@@ -30,7 +30,7 @@ typedef struct s_info
 	pthread_mutex_t print;
 	pthread_mutex_t *all_forks;
 	struct s_philo	*philo;
-	int				time_start;
+	unsigned long	time_start;
 } t_info;
 
 typedef struct s_philo
@@ -39,17 +39,18 @@ typedef struct s_philo
 	pthread_t		thread;
 	struct s_info   *data;
 	pthread_mutex_t  stop;
+	pthread_mutex_t	 check;
 	int				fork_left;
 	int				fork_right;
-	int				use_fork;
-	int				last_meals;
+	unsigned long	last_meals;
+	int				ate_times;
 } t_philo;
 
 
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 
 void   *routines(void *arg);
-long    time_now(void);
+unsigned long    time_now(void);
 
 void	print_routine(t_philo *philo, char *str);
 void	print_routinet(long ms, t_philo *philo, char *str);
