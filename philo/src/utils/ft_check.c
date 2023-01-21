@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:55 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/17 10:21:05 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:31:34 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_has_number(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (i < argc)
@@ -32,11 +32,11 @@ int	check_has_number(int argc, char **argv)
 	return (1);
 }
 
-int check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {	
-	if(ac >= 5 && ac <= 6)
+	if (ac >= 5 && ac <= 6)
 	{
-		if(check_has_number(ac, av) == 0)
+		if (check_has_number(ac, av) == 0)
 			return (0);
 	}
 	else
