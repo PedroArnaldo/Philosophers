@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/20 22:42:39 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:05:54 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	philo = init_info(&data, philo, ac, av);
 	if (philo)
 	{
-		data.time_start = time_now();
+		data.time_start = get_time();
 		while (++i < data.num_of_philo)
 		{
 			pthread_create(&philo[i].thread, NULL, &routines, &philo[i]);

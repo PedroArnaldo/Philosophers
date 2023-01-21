@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/18 16:25:07 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:04:48 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_philo
 	int				fork_left;
 	int				fork_right;
 	unsigned long	last_meals;
+	int				use_fl;
+	int				use_fr;
 	int				meals;
 }	t_philo;
 
@@ -54,10 +56,14 @@ void			init_mutex(t_philo *philo);
 void			print_routinet(long ms, t_philo *philo, char *str);
 void			*routines(void *arg);
 
-unsigned long	time_now(void);
+unsigned long	time_now(t_philo *philo);
+unsigned long	get_time(void);
+
 int				monitoring(t_philo *philo);
+
 long			ft_atoi(const char *str);
 int				ft_isdigit(int c);
+
 int				check_has_number(int ac, char **av);
 int				check_args(int ac, char **av);
 #endif

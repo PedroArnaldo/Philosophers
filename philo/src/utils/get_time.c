@@ -6,13 +6,13 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:19:37 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/20 20:33:58 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:06:24 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-unsigned long	time_now(void)
+unsigned long	get_time(void)
 {
 	struct timeval	tv;
 	unsigned long	mili;
@@ -21,4 +21,9 @@ unsigned long	time_now(void)
 	mili = tv.tv_sec * 1000;
 	mili += tv.tv_usec / 1000;
 	return (mili);
+}
+
+unsigned long	time_now(t_philo *philo)
+{
+	return (get_time() - philo->data->time_start);
 }
