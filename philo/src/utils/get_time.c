@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:19:37 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/21 20:19:48 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 00:55:06 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ unsigned long	time_now(t_philo *philo)
 
 void	smart_sleep(unsigned long time, t_philo *ph)
 {
-	unsigned long start;
+	unsigned long	start;
 
 	start = time_now(ph);
 	while (time_now(ph) - start < time)
-	usleep(100);
+		usleep(50);
 }

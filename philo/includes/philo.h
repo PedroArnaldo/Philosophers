@@ -53,13 +53,15 @@ typedef struct s_philo
 t_philo			*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 void			init_mutex(t_philo *philo);
 
-void			print_routinet(long ms, t_philo *philo, char *str);
+void			print_routinet(t_philo *philo, char *str);
 void			*routines(void *arg);
 
 unsigned long	time_now(t_philo *philo);
 unsigned long	get_time(void);
+void			smart_sleep(unsigned long time, t_philo *ph);
 
 int				monitoring(t_philo *philo);
+int				check_stop(t_philo *philo);
 
 long			ft_atoi(const char *str);
 int				ft_isdigit(int c);

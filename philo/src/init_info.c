@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/20 23:02:26 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 00:40:08 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 {
 	int				i;
-	unsigned long	ms;
 
 	i = -1;
 	if (argc >= 5 && argc <= 6)
@@ -28,19 +27,23 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 		data->someone_dead = 0;
 		if (argc == 6)
 			data->num_times_must_eat = ft_atoi(argv[5]);
+		else
+			data->num_times_must_eat = -1;
 		data->all_forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
 		philo = malloc(sizeof(t_philo) * data->num_of_philo);
 		data->philo = philo;
-		ms = time_now();
 		while (++i < data->num_of_philo)
 		{
 			philo[i].id = i + 1;
 			philo[i].fork_left = i;
 			philo[i].fork_right = (i + 1) % data->num_of_philo;
 			philo[i].data = data;
-			philo[i].last_meals = ms;
+			philo[i].use_fr = 0;
+			philo[i].use_fl = 0;
+			philo[i].last_meals = time_now(&philo[i]);
 			philo[i].meals = 0;
 		}
+		init_mutex(philo);
 		return (philo);
 	}
 	else
