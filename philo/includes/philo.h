@@ -61,6 +61,7 @@ unsigned long	get_time(void);
 void			smart_sleep(unsigned long time, t_philo *ph);
 
 int				monitoring(t_philo *philo);
+int				is_dead(t_philo *philo);
 int				check_stop(t_philo *philo);
 
 long			ft_atoi(const char *str);
