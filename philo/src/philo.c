@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 17:14:35 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:28:48 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	one_philo(t_philo *philo)
 {
-	pthread_create(&philo[0].thread, NULL, &routines, &philo[0]);
-	pthread_join(philo[0].thread, NULL);
+	printf("fork right = %d\n", philo->fork_right);
+	printf("fork left = %d\n", philo->fork_left);
+	while (42)
+	{
+		if (is_dead(philo))
+			break ;
+	}
 }
 
 int	main(int ac, char **av)
@@ -32,11 +37,11 @@ int	main(int ac, char **av)
 		printf("Error\n");
 		return (0);
 	}
+	data.time_start = get_time();
 	philo = init_info(&data, philo, ac, av);
 	if (philo)
 	{
-		data.time_start = get_time();
-		if (data.num_of_philo != 1)
+		if (data.num_of_philo)
 		{
 			while (++i < data.num_of_philo)
 				pthread_create(&philo[i].thread, NULL, &routines, &philo[i]);

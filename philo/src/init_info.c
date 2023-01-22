@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 16:46:46 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:49:50 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 		data->all_forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
 		philo = malloc(sizeof(t_philo) * data->num_of_philo);
 		data->philo = philo;
-		sleep(1);
 		while (++i < data->num_of_philo)
 		{
 			philo[i].id = i + 1;
@@ -41,10 +40,9 @@ t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 			philo[i].data = data;
 			philo[i].use_fr = 0;
 			philo[i].use_fl = 0;
-			philo[i].last_meals = get_time();
+			philo[i].last_meals = time_now(&philo[i]);
 			philo[i].meals = 0;
 		}
-		//printf("time_now philo 1 %lu \n",time_now(&philo[1]));
 		init_mutex(philo);
 		return (philo);
 	}
