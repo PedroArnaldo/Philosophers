@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/23 15:11:57 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:27:51 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_philo
 
 t_philo			*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 void			init_mutex(t_philo *philo);
-
 
 void			print_error(void);
 void			print_routinet(t_philo *philo, char *str);

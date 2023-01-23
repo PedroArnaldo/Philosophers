@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:16:05 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/23 16:08:02 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:24:04 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_dead(t_philo *philo)
 		pthread_mutex_lock(&philo->check);
 		philo->data->someone_dead = 1;
 		pthread_mutex_lock(&philo->data->print);
-		if (philo->data->satisfied == philo->data->num_of_philo && philo->data->someone_dead < 1)
+		if (!(philo->data->satisfied == philo->data->num_of_philo))
 			printf("%lums\t%d\t died\n", time_now(philo), philo->id);
 		pthread_mutex_unlock(&philo->data->print);
 		pthread_mutex_unlock(&philo->check);
