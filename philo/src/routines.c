@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 22:53:19 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:12:40 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,6 @@ void	*routines(void *arg)
 		if (is_dead(philo) || check_stop(philo))
 			break ;
 	}
-	if (philo->use_fl)
-		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
-	if (philo->use_fr)
-		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
+	drop_fork(philo);
 	return (NULL);
 }

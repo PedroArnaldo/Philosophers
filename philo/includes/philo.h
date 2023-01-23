@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:38 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/21 19:04:48 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:11:57 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			smart_sleep(unsigned long time, t_philo *ph);
 
 int				is_dead(t_philo *philo);
 int				check_stop(t_philo *philo);
+void			drop_fork(t_philo *philo);
 
 long			ft_atoi(const char *str);
 int				ft_isdigit(int c);
