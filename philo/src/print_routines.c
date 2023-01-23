@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:48 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 19:33:46 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 23:02:52 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	print_routinet(t_philo *philo, char *str)
 {
-	if (check_stop(philo))
+	if (check_stop(philo) || is_dead(philo))
 		return ;
 	pthread_mutex_lock(&philo->data->print);
-	printf("%ldms %d %s\n", time_now(philo), philo->id, str);
+	printf("%ldms\t%d\t %s\n", time_now(philo), philo->id, str);
 	pthread_mutex_unlock(&philo->data->print);
+}
+
+void	print_error(void)
+{
+	printf("\033[0;31m");
+	printf("Error\n");
+	printf("\033[0m");
 }

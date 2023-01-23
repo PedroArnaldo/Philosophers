@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:19:37 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 18:48:25 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 21:56:57 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	smart_sleep(unsigned long time, t_philo *ph)
 	start = time_now(ph);
 	while (time_now(ph) - start < time)
 	{
-		if (is_dead(ph))
+		if (is_dead(ph) || check_stop(ph))
 			break ;
 		usleep(50);
 	}

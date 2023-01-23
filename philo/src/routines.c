@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/22 20:29:16 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:53:19 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ void	take_fork(t_philo *philo)
 	print_routinet(philo, "has taken a fork");
 	philo->use_fr = 1;
 	if (philo->fork_right == philo->fork_left)
+	{
+		usleep(500);
 		smart_sleep(philo->data->time_to_die, philo);
+		if (is_dead(philo))
+			return ;
+	}
 	pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
 	print_routinet(philo, "has taken a fork");
 	philo->use_fl = 1;
@@ -27,8 +32,7 @@ void	take_fork(t_philo *philo)
 void	eat(t_philo *philo)
 {
 	philo->last_meals = time_now(philo);
-	//printf("%lu \n", time_now(philo) - philo->last_meals);
-	if(!is_dead(philo))
+	if (!is_dead(philo))
 		print_routinet(philo, "is eating");
 	philo->meals++;
 	pthread_mutex_lock(&philo->check);
@@ -58,9 +62,9 @@ void	*routines(void *arg)
 	philo = (t_philo *) arg;
 	if (philo->id % 2 == 0)
 		usleep(philo->data->time_to_eat * 1000);
-	while (42)
+	while (42 || philo->data->someone_dead != 1)
 	{
-		if (is_dead(philo) || check_stop(philo)) 
+		if (is_dead(philo) || check_stop(philo))
 			break ;
 		take_fork(philo);
 		if (is_dead(philo) || check_stop(philo))
@@ -73,8 +77,6 @@ void	*routines(void *arg)
 			break ;
 		think(philo);
 		if (is_dead(philo) || check_stop(philo))
-			break ;
-		if (philo->data->num_of_philo == philo->data->satisfied)
 			break ;
 	}
 	if (philo->use_fl)
