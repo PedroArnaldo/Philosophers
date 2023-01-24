@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/23 15:32:09 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:17:07 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_philo(t_philo *philo, t_info *data)
 		i = -1;
 		while (++i < data->num_of_philo)
 			is_dead(&philo[i]);
-		if (data->someone_dead > 0)
+		if (data->someone_dead > 0 || data->satisfied == data->num_of_philo)
 			break ;
 	}
 }
@@ -59,6 +59,11 @@ int	main(int ac, char **av)
 	if (philo)
 		while (++i < data.num_of_philo)
 			pthread_create(&philo[i].thread, NULL, &routines, &philo[i]);
+	else
+	{
+		print_error();
+		return (0);
+	}
 	check_philo(philo, &data);
 	join_and_free(&data);
 	return (0);

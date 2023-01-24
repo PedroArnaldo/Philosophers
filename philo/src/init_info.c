@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/23 15:02:59 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:57:57 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,26 @@ void	init_philo(t_philo *philo, t_info *data)
 	}
 }
 
+int	is_zero(char **argv, int argc)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_atoi(argv[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 {
 	if (argc >= 5 && argc <= 6)
 	{
+		if (is_zero(argv, argc))
+			return (NULL);
 		data->num_of_philo = ft_atoi(argv[1]);
 		data->time_to_die = ft_atoi(argv[2]);
 		data->time_to_eat = ft_atoi(argv[3]);
