@@ -52,22 +52,19 @@ typedef struct s_philo
 
 t_philo			*init_info(t_info *data, t_philo *philo, int argc, char **argv);
 void			init_mutex(t_philo *philo);
-
 void			print_error(void);
 void			print_routinet(t_philo *philo, char *str);
 void			*routines(void *arg);
-
 unsigned long	time_now(t_philo *philo);
 unsigned long	get_time(void);
 void			smart_sleep(unsigned long time, t_philo *ph);
-
 int				is_dead(t_philo *philo);
 int				check_stop(t_philo *philo);
 void			drop_fork(t_philo *philo);
-
 long			ft_atoi(const char *str);
 int				ft_isdigit(int c);
-
 int				check_has_number(int ac, char **av);
 int				check_args(int ac, char **av);
+int				is_zero(char **argv, int argc);
+int				waiting_to_die(t_philo *philo);
 #endif

@@ -30,20 +30,6 @@ void	init_philo(t_philo *philo, t_info *data)
 	}
 }
 
-int	is_zero(char **argv, int argc)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (ft_atoi(argv[i]) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 t_philo	*init_info(t_info *data, t_philo *philo, int argc, char **argv)
 {
 	if (argc >= 5 && argc <= 6)

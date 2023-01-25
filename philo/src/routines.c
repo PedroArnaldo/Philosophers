@@ -17,13 +17,8 @@ void	take_fork(t_philo *philo)
 	pthread_mutex_lock(&philo->data->all_forks[philo->fork_right]);
 	print_routinet(philo, "has taken a fork");
 	philo->use_fr = 1;
-	if (philo->fork_right == philo->fork_left)
-	{
-		usleep(500);
-		smart_sleep(philo->data->time_to_die, philo);
-		if (is_dead(philo))
-			return ;
-	}
+	if (waiting_to_die(philo))
+		return ;
 	pthread_mutex_lock(&philo->data->all_forks[philo->fork_left]);
 	print_routinet(philo, "has taken a fork");
 	philo->use_fl = 1;
@@ -40,8 +35,7 @@ void	eat(t_philo *philo)
 		philo->data->satisfied++;
 	pthread_mutex_unlock(&philo->check);
 	smart_sleep(philo->data->time_to_eat, philo);
-	pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
-	pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
+	drop_fork(philo);
 }
 
 void	sleeping(t_philo *philo)
@@ -62,7 +56,7 @@ void	*routines(void *arg)
 	philo = (t_philo *) arg;
 	if (philo->id % 2 == 0)
 		usleep(philo->data->time_to_eat * 1000);
-	while (42 || philo->data->someone_dead != 1)
+	while (42)
 	{
 		if (is_dead(philo) || check_stop(philo))
 			break ;
@@ -76,8 +70,6 @@ void	*routines(void *arg)
 		if (is_dead(philo) || check_stop(philo))
 			break ;
 		think(philo);
-		if (is_dead(philo) || check_stop(philo))
-			break ;
 	}
 	drop_fork(philo);
 	return (NULL);

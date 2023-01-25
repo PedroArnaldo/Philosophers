@@ -32,6 +32,20 @@ int	check_has_number(int argc, char **argv)
 	return (1);
 }
 
+int	is_zero(char **argv, int argc)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_atoi(argv[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	check_args(int ac, char **av)
 {	
 	if (ac >= 5 && ac <= 6)
@@ -42,4 +56,16 @@ int	check_args(int ac, char **av)
 	else
 		return (0);
 	return (1);
+}
+
+int	waiting_to_die(t_philo *philo)
+{
+	if (philo->fork_right != philo->fork_left)
+		return (0);
+	while (42)
+	{
+		if (is_dead(philo))
+			return (1);
+	}
+	return (0);
 }
