@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:44:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/24 13:57:57 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:51:28 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	init_philo(t_philo *philo, t_info *data)
 		philo[i].fork_left = i;
 		philo[i].fork_right = (i + 1) % data->num_of_philo;
 		philo[i].data = data;
-		philo[i].use_fr = 0;
-		philo[i].use_fl = 0;
+		philo[i].use_fr = -1;
+		philo[i].use_fl = -1;
 		philo[i].last_meals = time_now(&philo[i]);
 		philo[i].meals = 0;
 	}
@@ -63,6 +63,7 @@ void	init_mutex(t_philo *philo)
 
 	i = 0;
 	pthread_mutex_init(&philo->data->print, NULL);
+	pthread_mutex_init(&philo->data->check_data, NULL);
 	while (i < philo->data->num_of_philo)
 	{
 		pthread_mutex_init(&philo[i].data->all_forks[i], NULL);

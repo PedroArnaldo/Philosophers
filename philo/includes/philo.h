@@ -30,6 +30,7 @@ typedef struct s_info
 	int				satisfied;
 	int				someone_dead;
 	pthread_mutex_t	print;
+	pthread_mutex_t	check_data;
 	pthread_mutex_t	*all_forks;
 	struct s_philo	*philo;
 	unsigned long	time_start;
