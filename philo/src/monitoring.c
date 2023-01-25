@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:16:05 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/24 23:52:15 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:19:41 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ int	is_dead(t_philo *philo)
 	if (time_now(philo) - philo->last_meals > philo->data->time_to_die)
 	{
 		pthread_mutex_lock(&philo->check);
-		pthread_mutex_lock(&philo->stop);
+		pthread_mutex_lock(&philo->data->print);
+		if (!(philo->data->satisfied == philo->data->num_of_philo)
+			&& philo->data->someone_dead == 0)
+			printf("%lums\t%d\t died\n", time_now(philo), philo->id);
 		pthread_mutex_lock(&philo->data->check_data);
 		philo->data->someone_dead = 1;
 		pthread_mutex_unlock(&philo->data->check_data);
-		pthread_mutex_unlock(&philo->stop);
-		pthread_mutex_lock(&philo->data->print);
-		if (!(philo->data->satisfied == philo->data->num_of_philo))
-			printf("%lums\t%d\t died\n", time_now(philo), philo->id);
 		pthread_mutex_unlock(&philo->data->print);
 		pthread_mutex_unlock(&philo->check);
 		return (1);
@@ -50,15 +49,15 @@ int	check_full(t_philo *philo)
 
 int	check_stop(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->check);
+	pthread_mutex_lock(&philo->data->check_data);
 	if (philo->data->someone_dead || check_full(philo))
 	{
-		pthread_mutex_unlock(&philo->check);
+		pthread_mutex_unlock(&philo->data->check_data);
 		return (1);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->check);
+		pthread_mutex_unlock(&philo->data->check_data);
 		return (0);
 	}
 }

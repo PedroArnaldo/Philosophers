@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:26:30 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/24 23:48:51 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:11:49 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	check_philo(t_philo *philo, t_info *data)
 	while (42)
 	{
 		i = -1;
+		if (data->someone_dead > 0 || data->satisfied == data->num_of_philo)
+			break ;
 		while (++i < data->num_of_philo)
 			is_dead(&philo[i]);
 		if (data->someone_dead > 0 || data->satisfied == data->num_of_philo)
