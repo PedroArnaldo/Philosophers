@@ -66,7 +66,13 @@ int	check_stop(t_philo *philo)
 void	drop_fork(t_philo *philo)
 {
 	if (philo->use_fl && philo->use_fl != -1)
+	{
 		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_left]);
+		philo->use_fl = 0;
+	}
 	if (philo->use_fr && philo->use_fr != -1)
+	{
 		pthread_mutex_unlock(&philo->data->all_forks[philo->fork_right]);
+		philo->use_fr = 0;
+	}
 }

@@ -21,7 +21,7 @@ OBJS = $(SRC:.c=.o)
 
 $(NAME): $(OBJS)
 		@echo "Compilation of $(NAME)..."
-		@ $(CC) $(OBJS) -o $(NAME)
+		@ $(CC) $(OBJS) -lpthread -o $(NAME)
 		@echo "$(NAME) ✔️"
 
 all: $(NAME)

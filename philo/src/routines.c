@@ -35,8 +35,6 @@ void	eat(t_philo *philo)
 		philo->data->satisfied++;
 	pthread_mutex_unlock(&philo->check);
 	smart_sleep(philo->data->time_to_eat, philo);
-	philo->use_fl = 0;
-	philo->use_fl = 0;
 	drop_fork(philo);
 }
 
