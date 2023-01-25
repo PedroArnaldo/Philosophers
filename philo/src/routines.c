@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:07:24 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/24 23:43:33 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:23:43 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	take_fork(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->check);
 	philo->last_meals = time_now(philo);
+	pthread_mutex_unlock(&philo->check);
 	if (!is_dead(philo))
 		print_routinet(philo, "is eating");
 	philo->meals++;
