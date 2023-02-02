@@ -17,18 +17,21 @@ SRC = src/philo.c \
 OBJS = $(SRC:.c=.o)
 
 %.o: %.c
-		${CC} ${CFLAGS} -c $< -o $@
+		@ ${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME): $(OBJS)
-		$(CC) $(OBJS) -o $(NAME)
+		@echo "Compilation of $(NAME)..."
+		@ $(CC) $(OBJS) -lpthread -o $(NAME)
+		@echo "$(NAME) ✔️"
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
-
+	@ $(RM) $(OBJS)
+	@ echo "Deleting $(NAME) objs ✔️"
 fclean: clean
-	$(RM) $(NAME)
+	@ $(RM) $(NAME)
+	@ echo "Deleting binary ✔️"
 
 re:	fclean all
 
