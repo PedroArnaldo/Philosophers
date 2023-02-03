@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:16:05 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/25 13:08:15 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:58:39 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	is_dead(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->check_data);
 	if (someone_dead)
 		return (1);
-
 	pthread_mutex_lock(&philo->check);
 	if (time_now(philo) - philo->last_meals > philo->data->time_to_die)
 	{
@@ -36,11 +35,8 @@ int	is_dead(t_philo *philo)
 		pthread_mutex_unlock(&philo->check);
 		return (1);
 	}
-	else
-	{
-		pthread_mutex_unlock(&philo->check);
-		return (0);
-	}
+	pthread_mutex_unlock(&philo->check);
+	return (0);
 }
 
 int	check_full(t_philo *philo)

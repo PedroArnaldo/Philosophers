@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.rio >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:26:55 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/01/20 20:31:34 by parnaldo         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:49:38 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	is_zero(char **argv, int argc)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) == 0)
+		if (ft_atoi(argv[i]) == 0 || ft_atoi(argv[i]) >= 2147483647
+			|| ft_atoi(argv[i]) <= -2147483648)
 			return (1);
 		i++;
 	}
