@@ -25,6 +25,7 @@ git clone git@github.com:PedroArnaldo/philosophers.git
 ./philo 4 310 200 200   // One philosopher dies
 ./philo 5 900 200 200 // No one should die
 ```
+![](https://github.com/PedroArnaldo/philosophers/blob/main/img/philo.png)
 
 ## References
 - [The dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
